@@ -17,6 +17,8 @@ def main():
     if len(sys.argv) < 2:
         sys.exit("Need urls file.")
 
+    if len(sys.argv) == 3:
+        proxies = {'http': sys.argv[2]}
     try:
         urlFile = open(sys.argv[1], 'r')
     except IOError:
@@ -26,7 +28,7 @@ def main():
         puturl = url.strip() + testFile
 
         try:
-            response = requests.put(puturl, data=data)
+            response = requests.put(puturl, data=data, proxies=proxies)
             if response.status_code == 200:
                 print "[VULNERABLE!] - " + puturl
             else:
