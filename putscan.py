@@ -5,7 +5,6 @@ import sys
 
 data = 'About that fox...'
 testFile = 'someTestFile.txt'
-proxies = {}
 
 
 def main():
@@ -26,9 +25,9 @@ def main():
 
     for url in urlFile:
         puturl = url.strip() + testFile
-
+        
         try:
-            response = requests.put(puturl, data=data, proxies=proxies)
+            response = requests.put(puturl, data=data)
             if response.status_code == 200:
                 print "[VULNERABLE!] - " + puturl
             else:
